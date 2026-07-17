@@ -1,17 +1,74 @@
-# motiontrack
+# 🏃 MotionTrack
 
-A new Flutter project.
+MotionTrack adalah aplikasi mobile berbasis Flutter yang membantu pengguna mencatat dan memantau aktivitas olahraga seperti berjalan, berlari, dan bersepeda. Aplikasi ini dikembangkan sebagai proyek portofolio untuk mempelajari pengembangan aplikasi Flutter dengan arsitektur yang modern.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+- 🔐 Authentication (Coming Soon)
+- 🏠 Dashboard
+- 📍 Activity Tracking
+- 📊 Statistics
+- 👤 User Profile
+- ⚙️ Settings
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ Tech Stack
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- Flutter
+- Dart
+- Riverpod
+- GoRouter
+- Google Fonts
+- Flutter SVG
+- Firebase *(Coming Soon)*
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📂 Project Structure
+
+```text
+lib/
+├── core/
+├── shared/
+├── features/
+├── app.dart
+└── main.dart
+```
+
+## 🚀 Getting Started
+
+Clone repository:
+
+```bash
+git clone https://github.com/USERNAME/motion-track.git
+```
+
+Install dependencies:
+
+```bash
+flutter pub get
+```
+
+Run project:
+
+```bash
+flutter run
+```
+
+## 📅 Development Progress
+
+- [x] Project Setup
+- [x] Theme Setup
+- [ ] GoRouter
+- [ ] Splash Screen
+- [ ] Authentication
+- [ ] Bottom Navigation
+- [ ] Home
+- [ ] Activity Tracking
+- [ ] Statistics
+- [ ] Firebase Integration
+
+## 📸 Preview
+
+Coming Soon...
+
+## 👨‍💻 Developer
+
+Developed by Marcelo Dede Saputra.
