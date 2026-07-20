@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:motiontrack/features/auth/view/register_page.dart';
 
 import '../../features/auth/view/login_page.dart';
 import '../../features/splash/view/splash_page.dart';
@@ -17,6 +18,12 @@ final GoRouter appRouter = GoRouter(
       path: AppRoutes.login,
       name: 'login',
       builder: (context, state) => const LoginPage(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.register,
+      name: 'Register',
+      builder: (context, state) => const RegisterPage(),
     ),
   ],
 );
