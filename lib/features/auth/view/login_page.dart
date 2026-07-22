@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:motiontrack/core/theme/app_spacing.dart';
 import 'package:motiontrack/core/routes/app_routes.dart';
 import 'package:motiontrack/features/auth/widgets/auth_footer.dart';
 import 'package:motiontrack/features/auth/widgets/or_divider.dart';
@@ -31,7 +32,7 @@ class LoginPage extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
 
-              const Gap(16),
+              const Gap(AppSpacing.xs),
 
               Text(
                 'Selamat Datang Kembali',
@@ -66,7 +67,12 @@ class LoginPage extends StatelessWidget {
 
               const Gap(16),
 
-              AuthButton(text: 'Masuk', onPressed: () {}),
+              AuthButton(
+                text: 'Masuk',
+                onPressed: () {
+                  context.go(AppRoutes.home);
+                },
+              ),
 
               const Gap(24),
 
