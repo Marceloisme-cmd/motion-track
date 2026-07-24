@@ -6,6 +6,7 @@ class RunActivity {
     required this.duration,
     required this.date,
     required this.pace,
+    required this.notes,
   });
 
   final String title;
@@ -14,4 +15,5 @@ class RunActivity {
   final Duration duration;
   final DateTime date;
   final String pace;
+  final String notes;
 }

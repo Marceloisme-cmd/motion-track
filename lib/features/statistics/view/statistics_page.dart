@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ActivityView extends StatelessWidget {
-  const ActivityView({super.key});
+class StatisticsPage extends StatelessWidget {
+  const StatisticsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

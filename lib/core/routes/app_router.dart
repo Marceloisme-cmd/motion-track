@@ -1,9 +1,11 @@
 import 'package:go_router/go_router.dart';
+import 'package:motiontrack/features/activity/view/activity_detail_page.dart';
 import 'package:motiontrack/features/auth/view/register_page.dart';
+import 'package:motiontrack/features/home/models/run_activity.dart';
+import 'package:motiontrack/features/navigation/view/main_navigation_page.dart';
 
 import '../../features/auth/view/login_page.dart';
 import '../../features/splash/view/splash_page.dart';
-import '../../features/home/view/home_page.dart';
 import 'app_routes.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -23,14 +25,23 @@ final GoRouter appRouter = GoRouter(
 
     GoRoute(
       path: AppRoutes.register,
-      name: 'Register',
+      name: 'register',
       builder: (context, state) => const RegisterPage(),
     ),
 
     GoRoute(
       path: AppRoutes.home,
       name: 'home',
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) => const MainNavigationPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.activityDetail,
+      name: 'activityDetail',
+      builder: (context, state) {
+        final activity = state.extra as RunActivity;
+
+        return ActivityDetailPage(activity: activity);
+      },
     ),
   ],
 );
