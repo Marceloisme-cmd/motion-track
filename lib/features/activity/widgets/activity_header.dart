@@ -24,7 +24,7 @@ class ActivityHeader extends StatelessWidget {
           "Every run tells a story",
           style: Theme.of(
             context,
-          ).textTheme.headlineMedium?.copyWith(color: Colors.grey.shade600),
+          ).textTheme.bodyLarge?.copyWith(color: Colors.grey.shade600),
         ),
       ],
     );
