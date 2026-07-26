@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "976201997091",
+    "project_id": "motion-track-81e04",
+    "storage_bucket": "motion-track-81e04.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976201997091:android:491d68ec1bb44a9058ca96",
+        "android_client_info": {
+          "package_name": "com.example.motiontrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFjBu4xKz3h9sJOKH4M5BtTRi-8cKHy2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
