@@ -8,12 +8,14 @@ class AuthTextField extends StatefulWidget {
     required this.hintText,
     required this.prefixIcon,
     this.obscureText = false,
+    this.controller,
   });
 
   final String label;
   final String hintText;
   final IconData prefixIcon;
   final bool obscureText;
+  final TextEditingController? controller;
 
   @override
   State<AuthTextField> createState() => _AuthTextFieldState();
@@ -37,6 +39,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
 
         const Gap(8),
         TextField(
+          controller: widget.controller,
           obscureText: _obscureText,
           decoration: InputDecoration(
             hintText: widget.hintText,

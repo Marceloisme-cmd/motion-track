@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:motiontrack/core/routes/app_routes.dart';
 import 'package:motiontrack/features/auth/widgets/auth_footer.dart';
 import 'package:motiontrack/features/auth/widgets/auth_text_field.dart';
+import '../../../providers/auth_provider.dart';
 import '../widgets/auth_button.dart';
 import '../widgets/social_login_button.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});
 
   @override
+  ConsumerState<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends ConsumerState<RegisterPage> {
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authProvider);
+    final isLoading = authState.isLoading;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -38,37 +63,60 @@ class RegisterPage extends StatelessWidget {
 
               const Gap(8),
 
-              const AuthTextField(
+              AuthTextField(
                 label: 'Nama Lengkap',
                 hintText: 'Masukkan nama lengkap',
                 prefixIcon: Icons.person_outline,
+                controller: nameController,
               ),
 
-              const AuthTextField(
+              AuthTextField(
                 label: 'Email',
                 hintText: 'Masukkan email',
                 prefixIcon: Icons.attach_email_outlined,
+                controller: emailController,
               ),
 
-              const AuthTextField(
+              AuthTextField(
                 label: 'Password',
                 hintText: 'Masukkan Password',
                 prefixIcon: Icons.lock_clock_outlined,
                 obscureText: true,
+                controller: passwordController,
               ),
 
               const Gap(4),
 
-              const AuthTextField(
+              AuthTextField(
                 label: 'Konfirmasi Password',
                 hintText: 'Masukkan kembali password',
                 prefixIcon: Icons.lock_clock_outlined,
                 obscureText: true,
+                controller: confirmPasswordController,
               ),
 
               const Gap(24),
 
-              AuthButton(text: 'Daftar', onPressed: () {}),
+              AuthButton(
+                text: 'Daftar',
+                isLoading: isLoading,
+                onPressed: () async {
+                  if (passwordController.text !=
+                      confirmPasswordController.text) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Password do not match')),
+                    );
+                    return;
+                  }
+                  await ref
+                      .read(authProvider.notifier)
+                      .register(
+                        name: nameController.text.trim(),
+                        email: emailController.text.trim(),
+                        password: passwordController.text,
+                      );
+                },
+              ),
 
               const Gap(24),
 

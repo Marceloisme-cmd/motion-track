@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:motiontrack/providers/auth_provider.dart';
+import 'package:motiontrack/core/routes/app_routes.dart';
+
 import 'package:motiontrack/core/theme/app_spacing.dart';
 import 'package:motiontrack/features/profile/widgets/logout_button.dart';
 import 'package:motiontrack/features/profile/widgets/profile_avatar.dart';
@@ -9,11 +14,11 @@ import 'package:motiontrack/features/profile/widgets/profile_section_card.dart';
 import 'package:motiontrack/features/profile/widgets/profile_section_title.dart';
 import 'package:motiontrack/features/profile/widgets/profile_user_info.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Stack(
         children: [
@@ -122,7 +127,15 @@ class ProfilePage extends StatelessWidget {
                     ],
                   ),
                   const Gap(AppSpacing.xl),
-                  LogoutButton(onTap: () {}),
+                  LogoutButton(
+                    onTap: () async {
+                      await ref.read(authProvider.notifier).logout();
+
+                      if (context.mounted) {
+                        context.go(AppRoutes.login);
+                      }
+                    },
+                  ),
                   const Gap(AppSpacing.xl),
                 ],
               ),
