@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
-import '../../home/models/run_activity.dart';
+import '../../../models/run_activity.dart';
 
 class ActivityInfoSection extends StatelessWidget {
   const ActivityInfoSection({super.key, required this.activity});

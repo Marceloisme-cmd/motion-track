@@ -1,15 +1,20 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:motiontrack/data/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:motiontrack/data/repositories/user_repository.dart';
+import 'package:motiontrack/providers/user_provider.dart';
+import '../models/user_model.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepository();
 });
 
 class AuthNotifier extends StateNotifier<AsyncValue<void>> {
-  AuthNotifier(this._repository) : super(const AsyncData(null));
+  AuthNotifier(this._authRepository, this._userRepository)
+    : super(const AsyncData(null));
 
-  final AuthRepository _repository;
+  final AuthRepository _authRepository;
+  final UserRepository _userRepository;
 
   Future<void> register({
     required String name,
@@ -19,7 +24,23 @@ class AuthNotifier extends StateNotifier<AsyncValue<void>> {
     state = const AsyncLoading();
 
     try {
-      await _repository.register(name: name, email: email, password: password);
+      final userCredential = await _authRepository.register(
+        name: name,
+        email: email,
+        password: password,
+      );
+
+      final user = UserModel(
+        id: userCredential.user!.uid,
+        name: name,
+        email: email,
+        height: 0,
+        weight: 0,
+        weeklyGoal: 20,
+        monthlyGoal: 80,
+        createdAt: DateTime.now(),
+      );
+      await _userRepository.createUser(user: user);
 
       state = const AsyncData(null);
     } catch (e) {
@@ -32,7 +53,7 @@ class AuthNotifier extends StateNotifier<AsyncValue<void>> {
     state = const AsyncLoading();
 
     try {
-      await _repository.signIn(email: email, password: password);
+      await _authRepository.signIn(email: email, password: password);
 
       state = const AsyncData(null);
     } catch (e) {
@@ -42,16 +63,17 @@ class AuthNotifier extends StateNotifier<AsyncValue<void>> {
   }
 
   Future<void> logout() async {
-    await _repository.logout();
+    await _authRepository.logout();
   }
 }
 
 final authProvider = StateNotifierProvider<AuthNotifier, AsyncValue<void>>((
   ref,
 ) {
-  final repository = ref.watch(authRepositoryProvider);
+  final authRepository = ref.watch(authRepositoryProvider);
+  final userRepository = ref.watch(userRepositoryProvider);
 
-  return AuthNotifier(repository);
+  return AuthNotifier(authRepository, userRepository);
 });
 
 final authStateProvider = StreamProvider<User?>((ref) {

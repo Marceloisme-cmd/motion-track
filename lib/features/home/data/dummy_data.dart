@@ -1,4 +1,4 @@
-import '../models/run_activity.dart';
+import '../../../models/run_activity.dart';
 
 final dummyActivities = [
   RunActivity(

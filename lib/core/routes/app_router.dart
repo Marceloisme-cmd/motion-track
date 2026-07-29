@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:motiontrack/features/activity/view/activity_detail_page.dart';
 import 'package:motiontrack/features/auth/view/register_page.dart';
-import 'package:motiontrack/features/home/models/run_activity.dart';
+import 'package:motiontrack/models/run_activity.dart';
 import 'package:motiontrack/features/navigation/view/main_navigation_page.dart';
 import '../../providers/auth_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

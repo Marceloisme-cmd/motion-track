@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:motiontrack/features/home/models/run_activity.dart';
+import 'package:motiontrack/models/run_activity.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../widgets/activity_stat_tile.dart';
 import '../widgets/activity_info_section.dart';
